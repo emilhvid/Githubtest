@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Githubtest
 {
-    public class Class1
+    public static class TestClass1
     {
+        public static string TestMethod()
+        {
+            return "Callback from testMethod";
+        }
     }
 }
