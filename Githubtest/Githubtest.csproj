@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\GitIndexer.0.1.2\build\GitIndexer.props" Condition="Exists('..\packages\GitIndexer.0.1.2\build\GitIndexer.props')" />
+  <Import Project="..\packages\GitIndexer.0.1.4\build\GitIndexer.props" Condition="Exists('..\packages\GitIndexer.0.1.4\build\GitIndexer.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -50,15 +50,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="BeforeBuild">
+    <Error Condition=" '$(GitIndexer)' != 'true' " Text="GitIndexer build targets are not inserted into MSBuild process. If you have just restored its Package, try rebuilding your solution." />
+  </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\GitIndexer.0.1.2\build\GitIndexer.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GitIndexer.0.1.2\build\GitIndexer.props'))" />
-    <Error Condition="!Exists('..\packages\GitIndexer.0.1.2\build\GitIndexer.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GitIndexer.0.1.2\build\GitIndexer.targets'))" />
+    <Error Condition="!Exists('..\packages\GitIndexer.0.1.4\build\GitIndexer.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GitIndexer.0.1.4\build\GitIndexer.props'))" />
+    <Error Condition="!Exists('..\packages\GitIndexer.0.1.4\build\GitIndexer.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GitIndexer.0.1.4\build\GitIndexer.targets'))" />
   </Target>
-  <Import Project="..\packages\GitIndexer.0.1.2\build\GitIndexer.targets" Condition="Exists('..\packages\GitIndexer.0.1.2\build\GitIndexer.targets')" />
-  <Target Name="BeforeBuild">
-    <Error Condition=" '$(GitIndexer)' != 'true' " Text="GitIndexer build targets are not inserted into MSBuild process. If you have just restored its Package, try rebuilding your solution." />
-  </Target>
+  <Import Project="..\packages\GitIndexer.0.1.4\build\GitIndexer.targets" Condition="Exists('..\packages\GitIndexer.0.1.4\build\GitIndexer.targets')" />
 </Project>
